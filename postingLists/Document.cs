@@ -26,5 +26,11 @@ namespace PostingLists
         {
             return a.hash != b.hash;
         }
+
+        public override string ToString()
+        {
+            return ""+hash;
+        }
     }
+}
 

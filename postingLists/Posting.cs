@@ -33,6 +33,11 @@ namespace PostingLists
         {
             this.item = (d.hash << 16) + (uint)(f * 100f);
         }
+
+        public override string ToString()
+        {
+            return $"{Document} {Bm25F}";
+        }
     }
 
 }

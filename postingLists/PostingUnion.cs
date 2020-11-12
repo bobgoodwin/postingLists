@@ -22,6 +22,11 @@ namespace PostingLists
             this.max = max;
         }
 
+        public PostingUnion(PostingArray a)
+        {
+            this.arrays.Add(a);
+        }
+
         PostingUnion(bool max)
         {
             this.max = max;
@@ -30,12 +35,13 @@ namespace PostingLists
         void Resolve()
         {
             if (arrays.Count() == 1) return;
-            arrays.Sort((x, y) => x.Count.CompareTo(y.Count));
+            arrays.Sort((x, y) => x.Count().CompareTo(y.Count()));
             PostingArray array = arrays[0];
             for (int i=1; i< arrays.Count(); i++)
             {
-                array = array.Intersection(arrays[i], max) as PostingArray;
+                array = array.Union(arrays[i], max) as PostingArray;
             }
+
             arrays.Clear();
             arrays.Add(array);
         }
@@ -46,22 +52,19 @@ namespace PostingLists
             return arrays[0].Postings();
         }
 
-        public long Count
+        public long Count()
         {
-            get
-            {
-                Resolve();
-                return arrays[0].Count;
-            }
+            Resolve();
+            return arrays[0].Count();
         }
 
         public PostingUnion Intersection(PostingUnion iother, bool max)
         {
             PostingUnion other = iother as PostingUnion;
             List<PostingArray> newArray = new List<PostingArray>();
-            for (int i=0; i< this.Count; i++)
+            for (int i=0; i< this.arrays.Count(); i++)
             {
-                for (int j=0; j<other.Count; j++)
+                for (int j=0; j<other.arrays.Count(); j++)
                 {
                     newArray.Add(this.arrays[i].Intersection(other.arrays[j], max) as PostingArray);
                 }

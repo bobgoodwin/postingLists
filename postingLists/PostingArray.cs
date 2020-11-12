@@ -26,7 +26,10 @@ namespace PostingLists
             this.list = list;
         }
 
-        public long Count => this.list.Length;
+        public long Count()
+        {
+            return this.list.Length;
+        }
 
         public PostingArray(string path)
         {
@@ -87,17 +90,17 @@ namespace PostingLists
             int i1 = 0;
             Posting item0 = this.list[i0];
             Posting item1 = other.list[i1];
-            while (i0 < this.list.Length || i1 < other.list.Length)
+            while (i0 < this.list.Length && i1 < other.list.Length)
             {
                 if (item0.Document == item1.Document)
                 {
                     if (max)
                     {
-                        result.Add(new Posting(item0.Document, Math.Max(item0.Bm25F, this.list[i1].Bm25F)));
+                        result.Add(new Posting(item0.Document, Math.Max(item0.Bm25F, item1.Bm25F)));
                     }
                     else
                     {
-                        result.Add(new Posting(item0.Document, item0.Bm25F + this.list[i1].Bm25F));
+                        result.Add(new Posting(item0.Document, item0.Bm25F + item1.Bm25F));
                     }
                     i0 = this.Next(i0, out item0);
                     i1 = other.Next(i1, out item1);
@@ -109,7 +112,7 @@ namespace PostingLists
                 }
                 else
                 {
-                    i1 = this.SkipAhead(i1, span1, item0.Document, out item1);
+                    i1 = other.SkipAhead(i1, span1, item0.Document, out item1);
                 }
             }
 
@@ -120,7 +123,7 @@ namespace PostingLists
         public int Next(int start, out Posting item)
         {
             start = start + 1;
-            if (start>this.list.Length)
+            if (start>=this.list.Length)
             {
                 item = default;
                 return this.list.Length;
@@ -147,6 +150,7 @@ namespace PostingLists
                     break;
                 }
                 if (this.list[end].Document.hash >= next.hash) break;
+                span++;
             }
 
             // start binary search between start(inclusive) and end (exclusive)
@@ -182,61 +186,37 @@ namespace PostingLists
                 if (i0 == this.list.Length)
                 {
                     result.Add(item1);
-                    i1++;
-                    if (i1 < other.list.Length)
-                    {
-                        item1 = other.list[i1];
-                    }
+                    i1 = other.Next(i1, out item1);
                 }
                 else if (i1 == other.list.Length)
                 {
                     result.Add(item0);
-                    i0++;
-                    if (i0 < this.list.Length)
-                    {
-                        item0 = this.list[i0];
-                    }
+                    i0 = this.Next(i0, out item0);
                 }
                 else if (item0.Document == item1.Document)
                 {
                     if (max)
                     {
-                        result.Add(new Posting(item0.Document, Math.Max(item0.Bm25F, this.list[i1].Bm25F)));
+                        result.Add(new Posting(item0.Document, Math.Max(item0.Bm25F, item1.Bm25F)));
                     }
                     else
                     {
-                        result.Add(new Posting(item0.Document, item0.Bm25F + this.list[i1].Bm25F));
+                        result.Add(new Posting(item0.Document, item0.Bm25F + item1.Bm25F));
                     }
 
-                    i0++;
-                    if (i0 < this.list.Length)
-                    {
-                        item0 = this.list[i0];
-                    }
-                    i1++;
-                    if (i1 < other.list.Length)
-                    {
-                        item1 = other.list[i1];
-                    }
+                    i0 = this.Next(i0, out item0);
+                    i1 = other.Next(i1, out item1);
 
                 }
                 else if (item0.Document.hash < item1.Document.hash)
                 {
                     result.Add(item0);
-                    i0++;
-                    if (i0 < this.list.Length)
-                    {
-                        item0 = this.list[i0];
-                    }
+                    i0 = this.Next(i0, out item0);
                 }
                 else
                 {
                     result.Add(item1);
-                    i1++;
-                    if (i1 < other.list.Length)
-                    {
-                        item1 = other.list[i1];
-                    }
+                    i1 = other.Next(i1, out item1);
                 }
             }
 

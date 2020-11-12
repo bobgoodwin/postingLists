@@ -32,7 +32,7 @@ namespace PostingLists
             get
             {
                 long cnt = 0;
-                foreach (var s in shards) cnt += s.Count;
+                foreach (var s in shards) cnt += s.Count();
                 return cnt;
             }
         }

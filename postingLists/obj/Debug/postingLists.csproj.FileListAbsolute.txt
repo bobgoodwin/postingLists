@@ -1,0 +1,7 @@
+C:\Users\bobgood\source\repos\postingLists\postingLists\obj\Debug\postingLists.csprojAssemblyReference.cache
+C:\Users\bobgood\source\repos\postingLists\postingLists\obj\Debug\postingLists.csproj.CoreCompileInputs.cache
+C:\Users\bobgood\source\repos\postingLists\postingLists\bin\Debug\postingLists.exe.config
+C:\Users\bobgood\source\repos\postingLists\postingLists\bin\Debug\postingLists.exe
+C:\Users\bobgood\source\repos\postingLists\postingLists\bin\Debug\postingLists.pdb
+C:\Users\bobgood\source\repos\postingLists\postingLists\obj\Debug\postingLists.exe
+C:\Users\bobgood\source\repos\postingLists\postingLists\obj\Debug\postingLists.pdb

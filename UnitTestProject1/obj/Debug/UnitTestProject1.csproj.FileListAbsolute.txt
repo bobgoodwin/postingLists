@@ -1,0 +1,17 @@
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\obj\Debug\UnitTestProject1.csprojAssemblyReference.cache
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\obj\Debug\UnitTestProject1.csproj.CoreCompileInputs.cache
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\postingLists.exe
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\postingLists.pdb
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\postingLists.exe.config
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\obj\Debug\UnitTestProject1.csproj.CopyComplete
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+C:\Users\bobgood\source\repos\postingLists\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
