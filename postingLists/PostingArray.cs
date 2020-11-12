@@ -42,7 +42,7 @@ namespace PostingLists
             using (System.IO.BinaryReader br = new System.IO.BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read)))
             {
                 int byteCount = br.ReadInt32();
-                this.list = new Posting[byteCount / sizeof(uint)];
+                this.list = new Posting[byteCount / sizeof(ulong)];
                 for (int i=0; i<list.Length;i++)
                 {
                     var hash=br.ReadUInt64();
@@ -53,11 +53,14 @@ namespace PostingLists
 
         public void Write(string path)
         {
+            Document last = default;
             using (System.IO.BinaryWriter bw = new BinaryWriter(File.Create(path)))
             {
                 bw.Write(this.List.Length*8);
                 foreach (var n in list)
                 {
+                    if (last.hash >= n.Document.hash) throw new Exception();
+                    last = n.Document;
                     bw.Write(n.Item);
                 }
             }
@@ -117,7 +120,22 @@ namespace PostingLists
             }
 
             return new PostingArray(result.ToArray());
+        }
 
+        public PostingArray RemoveRepeats()
+        {
+            List<Posting> p = new List<Posting>();
+            Posting last = default;
+            foreach (var n in this.list)
+            {
+                if (n.Document!=last.Document)
+                {
+                    p.Add(n);
+                }
+                last = n;
+            }
+
+            return new PostingArray(p.ToArray());
         }
 
         public int Next(int start, out Posting item)

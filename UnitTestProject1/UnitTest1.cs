@@ -56,6 +56,17 @@ namespace UnitTestProject1
                 Assert.IsTrue(n.Bm25F == .1f);
             }
         }
+
+        [TestMethod]
+        public void BinaryReader()
+        {
+            var p2 = new PostingArray(@"c:\S0\SS\_dirt");
+            for (int i=1; i<p2.List.Length;i++)
+            {
+                Assert.IsTrue(p2.List[i].Document.hash > p2.List[i - 1].Document.hash);
+            }
+        }
+
         [TestMethod]
         public void Union2()
         {

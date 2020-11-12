@@ -11,17 +11,15 @@ namespace PostingLists
 
     class Program
     {
-        static void Main(string[] args)
-        {
-
-        }
         static long tot = 0;
         static long sofar = 0;
         static DateTime start;
-        static void Main2(string[] args)
+        static void Main(string[] args)
         {
             string srcDir = @"D:\local\M0";
             string dstDir = @"C:\local\S0";
+            srcDir = @"c:\S0";
+            dstDir = @"c:\S0\SS";
             Directory.CreateDirectory(dstDir);
             foreach (var src in Directory.EnumerateFiles(srcDir))
             {
@@ -72,6 +70,7 @@ namespace PostingLists
             {
                 PostingArray plist = new PostingArray(src);
                 plist.Sort();
+                plist = plist.RemoveRepeats();
                 plist.Write(dst);
             }
             else
