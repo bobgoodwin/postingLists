@@ -223,5 +223,34 @@ namespace PostingLists
             return new PostingArray(result.ToArray());
 
         }
+
+        public bool TryGetValue(Document d, out float bm25f)
+        {
+            int start = 0;
+            int end = this.list.Length;
+            while ((end - start) > 1)
+            {
+                int mid = (end - start) / 2 + start;
+                if (this.list[mid].Document.hash<d.hash)
+                {
+                    start = mid;
+                }
+                else
+                {
+                    end = mid;
+                }
+            }
+
+            bm25f = 0;
+            if (end == this.list.Length) return false;
+            if (this.list[end].Document == d)
+            {
+                bm25f = this.list[end].Bm25F;
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

@@ -71,5 +71,20 @@ namespace PostingLists
 
             return result;
         }
+
+        public bool TryGetValue(Document d, out float bm25f)
+        {
+            foreach (var a in this.shards)
+            {
+                if (a.TryGetValue(d, out bm25f))
+                {
+                    return true;
+                }
+            }
+
+            bm25f = 0;
+            return false;
+        }
+
     }
 }

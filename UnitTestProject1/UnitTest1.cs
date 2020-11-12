@@ -71,6 +71,10 @@ namespace UnitTestProject1
                 float f2 = (n.Document.hash >= 4 && n.Document.hash <= 16 && (n.Document.hash - 4) % 2 == 0) ? .02f : 0;
                 Assert.IsTrue(Math.Abs(n.Bm25F - f1-f2)<.001);
             }
+            float bm25f;
+            Assert.IsTrue(p.TryGetValue(new Document(10), out bm25f));
+            Assert.AreEqual(bm25f, .12f);
+            Assert.IsFalse(p.TryGetValue(new Document(11), out bm25f));
 
             p = p1.Union(p0, max: true);
             Assert.AreEqual(9, p.Count());
@@ -80,6 +84,7 @@ namespace UnitTestProject1
                 float f2 = (n.Document.hash >= 4 && n.Document.hash <= 16 && (n.Document.hash - 4) % 2 == 0) ? .02f : 0;
                 Assert.IsTrue( Math.Abs(n.Bm25F - Math.Max(f1, f2))<.0001);
             }
+
         }
 
         [TestMethod]

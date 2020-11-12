@@ -91,5 +91,11 @@ namespace PostingLists
 
             return result;
         }
+
+        public bool TryGetValue(Document d, out float bm25f)
+        {
+            Resolve();
+            return this.arrays[0].TryGetValue(d, out bm25f);
+        }
     }
 }
